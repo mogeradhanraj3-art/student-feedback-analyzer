@@ -1,0 +1,61 @@
+feedback,sentiment,subject,date
+"The professor explains complex concepts clearly and patiently",positive,Machine Learning,2026-09-01
+"The teaching assistants are supportive and answer questions quickly",positive,Data Structures,2026-09-02
+"Practical sessions help me understand the theory",positive,Python Programming,2026-09-03
+"The lecture notes are organized and useful for revision",positive,Database Systems,2026-09-04
+"The instructor gives helpful examples from industry",positive,Artificial Intelligence,2026-09-05
+"The library is quiet and has enough study space",positive,Campus Facilities,2026-09-06
+"The course projects make learning engaging",positive,Software Engineering,2026-09-07
+"Feedback from faculty helps me improve my work",positive,Machine Learning,2026-09-08
+"The lab equipment works reliably during practicals",positive,Computer Networks,2026-09-09
+"The syllabus is structured well and the objectives are clear",positive,Database Systems,2026-09-10
+"The professor is approachable and explains doubts well",positive,Mathematics,2026-09-11
+"The online learning portal is easy to navigate",positive,Campus Facilities,2026-09-12
+"The assignments are relevant and strengthen the concepts",positive,Data Structures,2026-09-13
+"Placement sessions provide practical interview guidance",positive,Placements,2026-09-14
+"The timetable is shared early and changes are communicated",positive,Administration,2026-09-15
+"The classroom is clean and the projector works properly",positive,Campus Facilities,2026-09-16
+"The course has a good balance of theory and hands-on work",positive,Artificial Intelligence,2026-09-17
+"The faculty encourages discussion and participation",positive,Software Engineering,2026-09-18
+"The study materials are current and easy to follow",positive,Python Programming,2026-09-19
+"The lab instructor gives clear demonstrations",positive,Computer Networks,2026-09-20
+"The lectures are confusing and the explanations skip important steps",negative,Mathematics,2026-09-01
+"The lab computers crash frequently during practical sessions",negative,Computer Networks,2026-09-02
+"The assignment deadline is too short for the amount of work",negative,Data Structures,2026-09-03
+"The syllabus is rushed and several topics are not explained",negative,Machine Learning,2026-09-04
+"The classroom projector is broken and visibility is poor",negative,Campus Facilities,2026-09-05
+"The Wi-Fi disconnects constantly in the lab",negative,Campus Facilities,2026-09-06
+"The exam schedule changed at the last minute",negative,Administration,2026-09-07
+"The instructor does not answer questions and seems unprepared",negative,Artificial Intelligence,2026-09-08
+"The course material is outdated and missing examples",negative,Database Systems,2026-09-09
+"The library is noisy and there are not enough seats",negative,Campus Facilities,2026-09-10
+"The grading criteria are unclear and marks feel inconsistent",negative,Software Engineering,2026-09-11
+"The practical exam instructions were confusing",negative,Python Programming,2026-09-12
+"The placement training is not relevant to current interviews",negative,Placements,2026-09-13
+"The portal is slow and keeps logging me out",negative,Campus Facilities,2026-09-14
+"The lecture pace is too fast to take notes",negative,Mathematics,2026-09-15
+"The lab has outdated equipment and missing components",negative,Computer Networks,2026-09-16
+"The assignment workload is excessive every week",negative,Data Structures,2026-09-17
+"The faculty cancels lectures without notice",negative,Administration,2026-09-18
+"The instructions for the project are incomplete",negative,Software Engineering,2026-09-19
+"The timetable has overlapping classes",negative,Administration,2026-09-20
+"The course has three modules and two assignments",neutral,Database Systems,2026-09-01
+"The lecture starts at ten in the morning",neutral,Mathematics,2026-09-02
+"The lab session lasts two hours on Thursday",neutral,Computer Networks,2026-09-03
+"The syllabus contains six units this semester",neutral,Software Engineering,2026-09-04
+"The exam is scheduled for next Wednesday",neutral,Administration,2026-09-05
+"The course uses Python for the practical work",neutral,Python Programming,2026-09-06
+"There are four projects in the course outline",neutral,Artificial Intelligence,2026-09-07
+"The assignment has ten questions",neutral,Data Structures,2026-09-08
+"The faculty shared a new reading list",neutral,Machine Learning,2026-09-09
+"The classroom has forty seats",neutral,Campus Facilities,2026-09-10
+"The project review is scheduled for Friday",neutral,Software Engineering,2026-09-11
+"The course assessment includes a quiz and a final exam",neutral,Database Systems,2026-09-12
+"The placement workshop is scheduled for next month",neutral,Placements,2026-09-13
+"The portal shows the timetable and attendance",neutral,Campus Facilities,2026-09-14
+"The professor assigned chapter five for reading",neutral,Mathematics,2026-09-15
+"The practical uses a database and a Python script",neutral,Python Programming,2026-09-16
+"The exam duration is two hours",neutral,Administration,2026-09-17
+"The semester includes lectures and laboratory sessions",neutral,Computer Networks,2026-09-18
+"The course page lists the learning outcomes",neutral,Machine Learning,2026-09-19
+"The feedback form has five questions",neutral,Administration,2026-09-20

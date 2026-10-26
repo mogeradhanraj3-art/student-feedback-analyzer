@@ -1,0 +1,25 @@
+"use client";
+import { useEffect, useState } from "react";
+import { Download, Search, Trash2, UploadCloud, Filter, RefreshCw } from "lucide-react";
+import { api, Feedback } from "@/lib/api";
+import { PageHeading, Panel, SentimentPill, UrgencyPill, EmptyState } from "@/components/ui";
+
+export default function FeedbackPage(){
+ const [items,setItems]=useState<Feedback[]>([]);const [total,setTotal]=useState(0);const [q,setQ]=useState("");const [sentiment,setSentiment]=useState("");const [urgency,setUrgency]=useState("");const [loading,setLoading]=useState(true);const [error,setError]=useState("");const [uploading,setUploading]=useState(false);const [message,setMessage]=useState("");
+ async function load(){setLoading(true);setError("");try{const params=new URLSearchParams();if(q)params.set("q",q);if(sentiment)params.set("sentiment",sentiment);if(urgency)params.set("urgency",urgency);params.set("limit","250");const d=await api.feedback("?"+params.toString());setItems(d.items);setTotal(d.total);}catch(e:any){setError(e.message);}finally{setLoading(false);}}
+ useEffect(()=>{load();},[sentiment,urgency]);
+ async function upload(file?:File){if(!file)return;setUploading(true);setMessage("");setError("");try{const r=await api.upload(file);setMessage(`${r.message} ${r.skipped} rows skipped.`);await load();}catch(e:any){setError(e.message);}finally{setUploading(false);}}
+ async function remove(id:number){if(!window.confirm("Delete this feedback record? This cannot be undone."))return;try{await api.deleteFeedback(id);await load();}catch(e:any){setError(e.message);}}
+ return <div>
+  <PageHeading eyebrow="Signal ledger / 03" title={<>Every voice.<br/><span className="text-acid">One searchable ledger.</span></>} description="Explore analyzed responses, filter by sentiment or urgency, and bring an entire CSV into the signal engine." action={<a className="btn btn-primary" href={api.exportUrl()}><Download size={14}/> Export CSV</a>}/>
+  <Panel title="Bring in a feedback universe" subtitle="CSV import · max 10 MB · raw text is stored after basic personal-data redaction">
+   <label className="dropzone" style={{display:"block",cursor:"pointer"}}><input className="hidden-input" type="file" accept=".csv,text/csv" onChange={e=>upload(e.target.files?.[0])}/><span className="dropzone-icon"><UploadCloud size={19}/></span><strong>{uploading?"Processing your CSV…":"Drop a CSV or click to browse"}</strong><p>Required text column: feedback, text, comment, review, or response.<br/>Optional columns: subject, course, department.</p>{uploading&&<div className="loading-line" style={{maxWidth:250,margin:"12px auto 0"}}><i/></div>}</label>
+   {message&&<div className="success-box">{message}</div>}{error&&<div className="error-box">{error}</div>}
+  </Panel>
+  <Panel title="Feedback explorer" subtitle={`${total.toLocaleString()} records match your filters`} className="" action={<button className="btn btn-ghost" onClick={load}><RefreshCw size={13}/> Refresh</button>}>
+   <div className="toolbar"><div style={{position:"relative",flex:"1 1 200px",maxWidth:340}}><Search size={14} style={{position:"absolute",left:11,top:12,color:"#718071"}}/><input className="input" style={{paddingLeft:32}} placeholder="Search feedback text…" value={q} onChange={e=>setQ(e.target.value)} onKeyDown={e=>e.key==="Enter"&&load()}/></div><select className="select" value={sentiment} onChange={e=>setSentiment(e.target.value)}><option value="">All sentiments</option><option value="positive">Positive</option><option value="neutral">Neutral</option><option value="negative">Negative</option></select><select className="select" value={urgency} onChange={e=>setUrgency(e.target.value)}><option value="">All priorities</option><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option></select><button className="btn btn-primary" onClick={load}><Filter size={13}/> Apply</button></div>
+   {loading?<div className="loading-line"><i/></div>:items.length?<div className="table-wrap"><table className="data-table"><thead><tr><th>Response</th><th>Subject</th><th>Sentiment</th><th>Confidence</th><th>Priority</th><th>Source</th><th></th></tr></thead><tbody>{items.map(r=><tr key={r.id}><td className="feedback-cell">{r.text}<div className="sub-cell" style={{marginTop:5}}>{r.created_at?new Date(r.created_at).toLocaleString():"Date unavailable"}</div></td><td>{r.subject||"—"}</td><td><SentimentPill value={r.sentiment}/></td><td style={{fontFamily:"DM Mono"}}>{Math.round(r.confidence*100)}%</td><td><UrgencyPill value={r.urgency}/></td><td className="sub-cell">{r.source}</td><td><button className="btn btn-danger" title="Delete record" onClick={()=>remove(r.id)}><Trash2 size={12}/></button></td></tr>)}</tbody></table></div>:<EmptyState title="No matching feedback" detail="Try clearing a filter, changing your search, or importing a CSV."/>}
+   <div style={{display:"flex",justifyContent:"space-between",marginTop:15,color:"#657165",fontSize:9}}><span>Showing {items.length} of {total} records in this view</span><span>Maximum 250 rows per query</span></div>
+  </Panel>
+ </div>;
+}
